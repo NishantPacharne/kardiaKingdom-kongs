@@ -1,0 +1,11 @@
+type MarketItem @entity {
+  id: ID!
+  tokenId: BigInt!
+  seller: Bytes!
+  owner: Bytes!
+  price: BigInt!
+  isListed: Boolean!
+  biddingEnabled: Boolean!
+  highestBid: BigInt
+  highestBidder: Bytes
+}

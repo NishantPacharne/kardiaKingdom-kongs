@@ -1,0 +1,27 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Marketplace
+    network: mainnet
+    source:
+      address: "0xC595e0D9dd590c82F415c00A770755a5D3B626BC"
+      abi: Marketplace
+      startBlock: 12609222
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketItemListed
+        - MarketSaleCreated
+      abis:
+        - name: Marketplace
+          file: ./abis/Marketplace.json
+      eventHandlers:
+        - event: MarketItemListed(indexed uint256,address,address,uint256,bool,bool,uint256,address)
+          handler: handleMarketItemListed
+        - event: MarketSaleCreated(indexed uint256,address,address,uint256)
+          handler: handleMarketSaleCreated
+      file: ./src/marketplace.ts
